@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ResourceCard from '../../components/ResourceCard.astro';
+import { categories, getResourcesByCategory, type Category } from '../../lib/resources';
+
+export function getStaticPaths() {
+  return categories.map((category) => ({
+    params: { category: category.id },
+    props: { category },
+  }));
+}
+
+interface Props {
+  category: Category;
+}
+
+const { category } = Astro.props;
+const items = getResourcesByCategory(category.id);
+---
+
+<BaseLayout title={category.title} description={category.description}>
+  <nav class="breadcrumb" aria-label="مسار التصفح">
+    <a href="/">الرئيسية</a>
+  </nav>
+
+  <h1 class="page-title">{category.title}</h1>
+  <p class="page-lead">{category.description}</p>
+
+  {
+    category.id === 'ai-web-building' && (
+      <p class="empty">
+        نعمل على إضافة موارد هذه الفئة. يمكنك حاليًا استكشاف بقية الفئات من الصفحة
+        الرئيسية.
+      </p>
+    )
+  }
+
+  <h2 class="section-title">الموارد ({items.length})</h2>
+
+  {items.length > 0 ? (
+    <ul class="resource-grid">
+      {items.map((resource) => (
+        <li>
+          <ResourceCard resource={resource} />
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p class="empty">لا توجد موارد في هذه الفئة بعد.</p>
+  )}
+</BaseLayout>

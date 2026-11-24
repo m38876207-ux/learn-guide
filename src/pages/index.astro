@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CategoryNav from '../components/CategoryNav.astro';
+import ResourceCard from '../components/ResourceCard.astro';
+import { categories, getResourcesByCategory, resources } from '../lib/resources';
+---
+
+<BaseLayout
+  title="دليل التعلّم"
+  description="دليل موارد مختارة لتعلّم البرمجة بالذكاء الاصطناعي، والأمن السيبراني، ولينكس، وبناء المواقع بالذكاء الاصطناعي."
+>
+  <h1 class="page-title">دليل التعلّم</h1>
+  <p class="page-lead">
+    موارد مختارة ومصنّفة بالعربية لمساعدتك على التعلّم العميق بدل النسخ واللصق. اختر
+    فئة وابدأ من الصفحة المخصصة لها.
+  </p>
+
+  <CategoryNav />
+
+  <section aria-labelledby="all-resources-heading">
+    <h2 class="section-title" id="all-resources-heading">كل الموارد ({resources.length})</h2>
+    {
+      categories.map((category) => {
+        const items = getResourcesByCategory(category.id);
+        return (
+          <section aria-labelledby={`heading-${category.id}`}>
+            <h3 class="section-title" id={`heading-${category.id}`}>
+              {category.title}
+            </h3>
+            {items.length > 0 ? (
+              <ul class="resource-grid">
+                {items.map((resource) => (
+                  <li>
+                    <ResourceCard resource={resource} headingLevel={4} />
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p class="empty">لا توجد موارد في هذه الفئة بعد.</p>
+            )}
+          </section>
+        );
+      })
+    }
+  </section>
+</BaseLayout>

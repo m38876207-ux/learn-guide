@@ -1,0 +1,32 @@
+[
+  {
+    "id": "karpathy-vibe-coding",
+    "name": "Andrej Karpathy — YouTube",
+    "url": "https://www.youtube.com/@AndrejKarpathy",
+    "type": "youtube",
+    "category": "vibe-coding",
+    "language": "en",
+    "level": "intermediate",
+    "description": "قناة أندريه كارباتي على يوتيوب، مصدر شائع لفهم فكرة البرمجة بالذكاء الاصطناعي."
+  },
+  {
+    "id": "owasp-appsec",
+    "name": "OWASP",
+    "url": "https://owasp.org/",
+    "type": "website",
+    "category": "cybersecurity",
+    "language": "en",
+    "level": "beginner",
+    "description": "منظمة OWASP توفر أدلة ومعايير مفتوحة لأمن التطبيقات."
+  },
+  {
+    "id": "linux-journey",
+    "name": "Linux Journey",
+    "url": "https://linuxjourney.com/",
+    "type": "website",
+    "category": "linux",
+    "language": "en",
+    "level": "beginner",
+    "description": "موقع تفاعلي مجاني لتعلم أساسيات لينكس خطوة بخطوة."
+  }
+]

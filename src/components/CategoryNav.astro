@@ -1,0 +1,20 @@
+---
+import { categories } from '../lib/resources';
+---
+
+<section aria-labelledby="categories-heading">
+  <h2 class="section-title" id="categories-heading">الفئات</h2>
+  <ul class="category-grid">
+    {
+      categories.map((category) => (
+        <li>
+          <a class="category-card" href={`/categories/${category.id}/`}>
+            <span class="category-card__short">{category.short}</span>
+            <h3 class="category-card__title">{category.title}</h3>
+            <p class="category-card__desc">{category.description}</p>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>

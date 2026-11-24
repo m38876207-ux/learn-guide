@@ -1,0 +1,26 @@
+---
+import ResourceLink from './ResourceLink.astro';
+import { levelLabels, languageLabels, typeLabels, type Resource } from '../lib/resources';
+
+type HeadingLevel = 2 | 3 | 4;
+
+interface Props {
+  resource: Resource;
+  headingLevel?: HeadingLevel;
+}
+
+const { resource, headingLevel = 3 } = Astro.props;
+const Heading = `h${headingLevel}` as 'h2' | 'h3' | 'h4';
+---
+
+<article class="resource-card">
+  <Heading class="resource-card__title">
+    <ResourceLink href={resource.url}>{resource.name}</ResourceLink>
+  </Heading>
+  <p class="resource-card__desc">{resource.description}</p>
+  <ul class="tags" aria-label="تفاصيل المورد">
+    <li>{typeLabels[resource.type]}</li>
+    <li>{levelLabels[resource.level]}</li>
+    <li>{languageLabels[resource.language]}</li>
+  </ul>
+</article>
